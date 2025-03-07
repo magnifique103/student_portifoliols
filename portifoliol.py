@@ -105,7 +105,7 @@ for section in sections:
 # Profile image (placeholder)
 st.sidebar.markdown("---")
 st.sidebar.title("Profile")
-profile_pic = st.sidebar.file_uploader("Upload Profile Picture", type=['jpg', 'png', 'jpeg'])
+profile_pic = st.sidebar.file_uploader("img.jpg", type=['jpg', 'png', 'jpeg'])
 if profile_pic is not None:
     st.sidebar.image(profile_pic, width=200)
 else:
@@ -134,11 +134,12 @@ if st.session_state.active_section == "Home":
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        if profile_pic is not None:
-            st.image(profile_pic, width=250)
-        else:
-            st.markdown("### 📷 *Profile Picture*")
-            
+        st.markdown('<div class="profile-section">', unsafe_allow_html=True)
+        # Use a placeholder image if no image is uploaded
+        profile_image = Image.open("img.jpg") if 'profile_pic' not in st.session_state else st.session_state.profile_pic
+        st.image(profile_image, width=200, caption="")
+        
+
     with col2:
         st.markdown(f"# {st.session_state.name}")
         st.markdown(f"## {st.session_state.field}")
@@ -151,7 +152,23 @@ if st.session_state.active_section == "Home":
     
     st.markdown("---")
     # Resume Upload and Download
-    resume_file = st.file_uploader("Upload your CV/Resume (PDF)", type=['pdf'])
+    resume_file = st.file_uploader("resume.pdf", type=['pdf'])
+    if resume_file is not None:
+        # Save the uploaded file
+        with open("resume.pdf", "wb") as f:
+            f.write(resume_file.getbuffer())
+        st.success("Resume uploaded successfully!")
+        st.markdown(get_binary_file_downloader_html("resume.pdf", 'Resume'), unsafe_allow_html=True)
+    
+    
+    col1, col2 = st.columns([1, 2])
+    
+   
+   
+   
+    st.markdown("---")
+    # Resume Upload and Download
+    resume_file = st.file_uploader("resume", type=['pdf'])
     if resume_file is not None:
         # Save the uploaded file
         with open("resume.pdf", "wb") as f:
@@ -160,6 +177,22 @@ if st.session_state.active_section == "Home":
         st.markdown(get_binary_file_downloader_html("resume.pdf", 'Resume'), unsafe_allow_html=True)
     else:
         st.info("Please upload your CV/Resume in PDF format")
+            # Download resume button
+        resume_file = "resume.pdf"  # You need to have this file in your project directory
+        try:
+            with open(resume_file, "rb") as pdf_file:
+                PDFbyte = pdf_file.read()
+            st.download_button(
+                label="Download Resume",
+                data=PDFbyte,
+                file_name="resume.pdf",
+                mime="application/pdf"
+            )
+        except:
+            st.write("Resume PDF not available. Please upload your resume.")
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+
 
 # Projects Section
 elif st.session_state.active_section == "Projects":
