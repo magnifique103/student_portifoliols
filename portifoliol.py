@@ -203,7 +203,7 @@ elif st.session_state.active_section == "Projects":
     """, unsafe_allow_html=True)
     
     # Project filtering
-    project_categories = [ "Year 2 Projects", "Individual Projects"]
+    project_categories = [ "all", "Group project", "Year 1 project","Year 2 Projects", "Individual Projects", "dessaertation"]
     selected_category = st.selectbox("Filter Projects by Category", project_categories)
     st.session_state.filtered_category = selected_category
     
@@ -212,28 +212,28 @@ elif st.session_state.active_section == "Projects":
         {
             "title": "Tour Guided room",
             "type": "Year 1 individual Project",
-            "category": ["Year 1 Projects", "individual Projects"],
+            "category": ["Year 1 Projects"],
             "description": "Developed a system that automates Tour Guide room tracking using facial recognition technology. The system uses computer vision to identify all perspn in real-time and guide to select any room and everywhere.",
             "technologies": "HTML, css",
-            "github": "https://github.com/yourusername/face-attendance-system",
+            "github": "https://github.com/magnifique103/TourGueded_Room.git",
             "image": None
         },
         {
             "title": "subscriptionBox",
             "type": "Year 2 Individual Assignment",
-            "category": ["Year 2 Projects", "Individual Projects"],
-            "description": "Built a responsive subscriptionBox, shopping cart, and subscribe. the service are available on time make our custome stisfied.",
+            "category": ["Year 2 Projects"],
+            "description": "Built a responsive subscriptionBox gifts, shopping cart, and subscribe. the service are available on time make our custome stisfied.",
             "technologies": "HTML, CSS, JavaScript, Bootstrap",
-            "github": "https://github.com/yourusername/ecommerce-web-app",
+            "github": "https://github.com/magnifique103/subscriptionbox.git",
             "image": None
         },
         {
             "title": "Student_portifolio",
             "type": "Final Year Project",
-            "category": ["Year 3 Projects", "Class Projects", "class project"],
+            "category": ["Year 3 Projects"],
             "description": "Researching and developing an AI-powered student_potifolio. The system uses natural language processing to understand student portififolio descriptions and machine learning to predict potential conditions.",
             "technologies": "Python, TensorFlow, NLTK, Streamlit, reat",
-            "github": "https://github.com/magnifique103/AI_Group8_Educational_Scholarship_Advisor_Assignment2.git",
+            "github": "https://github.com/magnifique103/student_portifoliols.git",
             "image": None
         }
     ]
